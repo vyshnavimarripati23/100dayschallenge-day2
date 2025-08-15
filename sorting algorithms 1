@@ -1,0 +1,49 @@
+# 1. Merge sort algorithm.
+
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    merged = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
+arr = [38, 27, 43, 3, 9, 82, 10]
+sorted_arr = merge_sort(arr)
+print("Merge Sort:", sorted_arr)
+o/p:Merge Sort: [3, 9, 10, 27, 38, 43, 82]
+
+
+#2. Quick sort
+
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[0]
+    less = [x for x in arr[1:] if x <= pivot]
+    greater = [x for x in arr[1:] if x > pivot]
+    return quick_sort(less) + [pivot] + quick_sort(greater)
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+sorted_arr = quick_sort(arr)
+print("Quick Sort:", sorted_arr)
+o/p:Quick Sort: [3, 9, 10, 27, 38, 43, 82]
+
+
+
